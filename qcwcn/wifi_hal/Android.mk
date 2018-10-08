@@ -137,6 +137,10 @@ ifeq ($(strip $(CONFIG_MAC_PRIVACY_LOGGING)),true)
 LOCAL_CFLAGS += -DCONFIG_MAC_PRIVACY_LOGGING
 endif
 
+ifneq ($(TARGET_USES_AOSP), true)
+LOCAL_CFLAGS += -DWCNSS_QTI_AOSP
+endif
+
 # gscan.cpp: address of array 'cached_results[i].results' will always evaluate to 'true'
 LOCAL_CLANG_CFLAGS := -Wno-pointer-bool-conversion
 
