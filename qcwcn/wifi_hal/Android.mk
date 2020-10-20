@@ -50,6 +50,10 @@ ifeq ($(strip $(CONFIG_MAC_PRIVACY_LOGGING)),true)
 LOCAL_CFLAGS += -DCONFIG_MAC_PRIVACY_LOGGING
 endif
 
+ifeq ($(TARGET_HAS_BROKEN_WLAN_SET_INTERFACE),true)
+LOCAL_CFLAGS += -DBROKEN_SET_INTERFACE
+endif
+
 # gscan.cpp: address of array 'cached_results[i].results' will always evaluate to 'true'
 LOCAL_CLANG_CFLAGS := -Wno-pointer-bool-conversion
 
@@ -139,6 +143,10 @@ endif
 
 ifneq ($(TARGET_USES_AOSP), true)
 LOCAL_CFLAGS += -DWCNSS_QTI_AOSP
+endif
+
+ifeq ($(TARGET_HAS_BROKEN_WLAN_SET_INTERFACE),true)
+LOCAL_CFLAGS += -DBROKEN_SET_INTERFACE
 endif
 
 # gscan.cpp: address of array 'cached_results[i].results' will always evaluate to 'true'
